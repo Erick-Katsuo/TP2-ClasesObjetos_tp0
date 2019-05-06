@@ -1,0 +1,394 @@
+
+
+Diseño de los Tipos de Dato Abstracto (T.D.A):
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Menu.
+
+	Atributos de la clase: 
+
+		- opcion_usuario. Será de tipo caracter. El dominio de este atributo está compuesto por todas las letras del abecedario.
+		- posicion_producto_buscado. Será de tipo entero. Dominio = {0...9999}
+		- gondola_principal. Será un objeto de clase Góndola.
+		- chango_principlal Será un objeto de clase Chango.
+
+	Métodos de la clase: 
+
+		//Método constructor
+        //Descripción: Inicializa el atributo "opcion_usuario". Muestra por consola que se ingresó al constructor.
+        //Pre:-.
+        //Post: El atributo mencionado queda inicializado. Muestra por consola el ingreso al constructor de esta clase.
+        +Menu();
+
+		//Descripción: Recibe la opción del usuario guardándolo en el atributo "opcion_usuario".
+        //Pre: -.
+        //Post: Queda recibida la opción del usuario en el atributo "opcion_usuario".
+        -vacío recibir_opcion();
+
+        //DescripciÓn: Lee del archivo de texto la cantidad de productos que tiene la gÓndola y luego los carga en un objeto Gondola.
+        //Pre: El archivo "productos.txt" debe existir.
+        //Post:  En el atributo "gondola_principal" queda inicializado el vector de clase Producto.
+        //con la cantidad y características de los productos del archivo "productos.txt".
+        -vacío cargar_gondola();
+
+        //Descripción: Lee la primer linea del archivo de texto, la cual dice la cantidad de productos que tendra el archivo.
+        //Pre: El archivo "productos.txt" debe existir.
+        //Post: Devuelve en el parámetro "cantidad_productos" la cantidad exacta de productos en el archivo mencionado.
+        -vacío leer_cantidad_productos(entero pasado por referencia cantidad_productos, 
+                                       objeto de clase lectura pasado por referenciaarchivo_productos);
+
+        //Descripción: Lee el archivo "productos.txt" guardando sus características en el vector de clase Productos del atributo "gondola_principal".
+        //Pre: El archivo "productos.txt" debe existir. El vector perteneciente al atributo
+        //"gondola_principal" debe estar correctamente inicializado. El archivo de lectura debe estar posicionado sobre 
+        //el primer producto a leer, ya que la primer línea es la cantidad de productos,y no la debe leer.
+        //Post: Guarda los productos en el vector de Productos del atributo "gondola_principal".
+        -vacío leer_productos(objeto de clase lectura pasado por referencia archivo_productos);
+
+        //Descripción: Muestra por consola los productos actuales del vector dinámico del atributo "gondola_principal".
+        //Pre: -.
+        //Post: Muestra por consola los productos actuales del vector dinámico del atributo "gondola_principal".
+        -vacío mostrar_productos_de_la_gondola();
+
+        //Descripción: Muestra por consola los productos actuales del vector dinámico del atributo "chango_principal".
+        //Pre: -.
+        //Post: Muestra por consola los productos actuales del vector dinámico del atributo "chango_principal".
+        -vacío mostrar_productos_del_chango();
+
+        //Descripción: Pedirá los datos de la cantidad deseada de productos a ingresar.
+        //Pre: Código y Nombre de los productos no pueden repetirse.
+        //Post: Los datos de los productos a ingresar quedan almacenados en el vector de productos ingresado por parámetro.
+        -vacío pedir_datos_producto(entero nuevo_tamanio_cargar, cadena de productos productos_a_cargar);
+
+        //Descripción: De acuerdo con la opción que ha elegido el usuario, realiza una tarea particular.
+        //Precondiciones: La opción elegida por el usuario se encuentra dentro del dominio de dicho atributo.
+        //Postcondiciones: Ejecuta la opción acorde con lo que haya elegido el usuario.
+        -vacío ejecutar_opcion();
+
+        //Descripción: Si la opción elegida anteriormente fue para buscar un producto, este método
+        //implementa las opciones que se pueden realizar con el producto encontrado
+        //Precondiciones: La opción elegida por el usuario se encuentra dentro del dominio de dicho atributo.
+        //Postcondiciones: Ejecuta la opción secundaria acorde con lo que haya elegido el usuario.
+        -vacío ejecutar_opcion_secundaria();
+
+        //Descripción: Este método se encarga de mostrarle el menú de opciones del supermercado
+        //al usuario a través de una interfaz gráfica rudimentaria.
+        //Precondiciones: -.
+        //Postcondiciones: Se imprime por pantalla el menú de opciones para la visualización del usuario.
+        -vacío mostrar_menu();
+
+        //Descripción: Realizará los métodos necesarios para poder agregar productos al
+        //vector dinamico de clase Prodcuto del atributo "gondola_principal".
+        //Pre: Máximo 10 productos a ingresar.
+        //Post: Queda actualizado el vector dinámico mencionado.
+        -vacío cargar_nuevos_productos_gondola();
+
+        //Descripción:  Este método llama al método de gondola principal que muestra la cantidad de productos en oferta.
+        //Precondiciones: -.
+        //Postcondiciones: Se imprime por pantalla la cantidad de productos en oferta.
+        -vacío mostrar_productos_oferta();
+
+        //Descripción: Busca el nombre del producto ingresado en el vector dinámico de clase Producto del atributo "gondola_principal".
+        //Pre: -.
+        //Post: Devuelve un puntero al producto buscado y un puntero nulo si no encontró el producto.
+        -entero buscar_producto_nombre();
+
+        //Descripción: Busca el código del producto ingresado en el vector dinámico de clase Producto del atributo "gondola_principal".
+        //Pre: -.
+        //Post: Devuelve un puntero al producto buscado y un puntero nulo si no encontró el producto.
+        -entero buscar_producto_codigo();
+
+        //Descripción: Inicia la interfaz del programa usando los métodos y clases necesarios para realizar la misma.
+        //Pre: El archivo "productos.txt" debe existir.
+        //Post: Se muestra un menú mediante consola dando a elegir distintas opciones al usuario, el programa realizará las opciones del menú.
+        +vacío iniciar_interfaz();  
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Gondola.
+
+	Atributos de la clase: 
+
+		- tamanio_gondola. Será un entero. Dominio = {0...9999}
+		- cantidad_productos_en_oferta. Será un entero. Dominio = {0.9999}
+		- productos_gondola. Será un vector dinámico de productos.
+		- gondola_auxiliar. Será un vector dinámico de productos.
+
+	Métodos de la clase: 
+
+		//Constructor
+        //Descripcion: Inicializa los atributos "tamanio_gondola" y "cantidad_productos_en_oferta". Además, 
+        //muestra por consola qué se ingreso al constructor.
+        //Pre:-.
+        //Post: Los atributos mencionados quedan inicializados.
+        +Gondola();
+
+        //Descripción: Es el método destructor de objetos de clase Gondola. Se encarga de liberar el espacio destinado 
+        //para alocar el vector de Productos en memoria dinámica.
+        //Precondiciones: -.
+        //Postcondiciones: Libera el espacio utilizado para alocar el vector de productos en memoria dinámica.
+        +~Gondola();
+
+		//Descripcion: Crea un vector dinamico auxiliar con el valor que recibe tamanio_nuevo.
+        //Pre: tamanio_nuevo tiene que ser mayor a cero (0).
+        //Post: Queda asignada la memoria dinamica para el vector dinamico auxiliar.
+        -vacío crear_espacio_gondola(entero tamanio_nuevo);
+
+        //Descripcion: Desplaza los productos actuales al vector dinamico auxiliar.
+        //Pre: El vector auxiliar debe tener el tamanio necesario para que entren los productos
+        //Post: El vector dinamico auxiliar posee los productos actuales.
+        -vacío desplazar_productos_actuales();
+
+        //Descripcion: Acomoda los nuevos productos al vector dinamico auxiliar.
+        //Pre: El vector de productos que recibe debe ser válido.
+        //Post: El vector dinamico auxiliar queda actualizado con todos los productos.
+        -vacío desplazar_productos_nuevos(cadena de productos productos_a_cargar, entero tamanio_nuevo);
+
+        //Descripción: Resta una unidad al stock del producto que se encuentre en la posición pasada por parámetro del vector 
+        //dinámico de productos de un objeto de clase Gondola.   
+        //Pre: La posición pasada por parámetro corresponde a un producto existente del vector dinámico de productos.
+        //Post: El stock del producto cuya posición es pasada por parámetro es restado en una unidad.
+        +vacío restar_stock(entero pos);
+
+        //Descripción: Este método se encarga de verificar si hay stock del producto cuya posición en el vector dinámico "productos_gondola"
+        //es pasado como parámetro.
+        //Pre: La posición que se pasa como parámetro pertenece a un producto válido.
+        //Post: Se devuelve true en caso de que haya stock del producto o false en caso contrario.
+        +booleano hay_stock(entero pos);
+
+        //Descripcion: Muestra por consola el producto de la posición pasada por parámetro.
+        //Pre: -.
+        //Post: Muestra por consola los productos actuales del vector dinámico "productos_gondola".
+        -vacío mostrar_producto_particular_gondola(entero posicion);
+
+        //Descripción: Este método se encargará de asignarle un nuevo valor al tamaño de la góndola,
+        //que representa la cantidad de productos presentes en ella.
+        //Pre: El nuevo_tamanio_gondola pasado como parámetro debe ser un número positivo y natural.
+        //Post: Al atributo tamanio_gondola de un objeto de clase Gondola se le asigna el valor de
+        //nuevo_tamanio_gondola, variable pasada como parámetro.
+        +vacío asignar_tamanio_gondola(entero nuevo_tamanio_gondola);
+
+        //Descripción: Crea el vector dinamico del atributo "productos_gondola".
+        //Pre: "tamanio_gondola" tiene que ser mayor a cero (0).
+        //Post: Queda asignada la memoria dinámica para el vector del atributo "productos_gondola"
+        +vacío preparar_gondola();
+
+        //Descripcion: Devuelve la dirección de memoria del vector dinámico "productos gondola" en la posición requerida.
+        //Pre: posicion >= 0.
+        //Post: Retorna la dirección del vector "productos_gondola" en la posicion requerida.
+        +puntero a producto obtener_producto(entero posicion);
+
+        //Descripción: Actualiza el vector dinamico del atributo "gondola_principal" junto a "tamanio_gondola".
+        //Pre: Recibe la cantidad de productos a cargar, tiene que ser mayor a 0. Además, le llega un vector de productos que contiene los
+        //productos a cargar en la góndola, este vector debe ser válido y debe respetar la cantidad de productos a cargar.
+        //Post: El vector dinamico mencionado queda actualizado con los productos anteriores y nuevos, "tamanio_gondola" actualizado a 
+        //la nueva cantidad de productos.
+        +vacío cargar_productos_gondola(entero cantidad_a_cargar, cadena de productos productos_a_cargar);
+
+        //Descripción: Busca el nombre pedido (producto_buscado) en el vector dinamico "productos_gondola".
+        //Pre: Recibe el nombre del producto buscado junto con una variable "posicion" pasada por referencia en caso de que el producto se encuentre. Además,
+        //le llega un booleano pasado por referencia que indica si el producto ha sido encontrado.
+        //Post: En caso de que el producto se encuentre, se cambia el valor de encontrado a true, y se devuelve por referencia la posición del producto encontrado.
+        +vacío buscar_producto_por_nombre(cadena de caracteres producto_buscado, entero pasado por referencia posicion,
+                                          booleano pasado por referencia encontrado);
+
+        //Descripción: Busca el codigo pedido (producto_buscado) en el vector dinamico "productos_gondola".
+        //Pre: Recibe el código del producto buscado (producto_buscado) junto con una variable "posicion" pasada por referencia 
+        //en caso de que el producto se encuentre.
+        //Además, le llega un booleano pasado por referencia que indica si el producto ha sido encontrado.
+        //Post: En caso de que el producto se encuentre, se cambia el valor de encontrado a true, y se devuelve por referencia la posición del producto encontrado.
+        +vacío buscar_producto_por_codigo(entero producto_buscado, entero pasado por referencia posicion, 
+                                          booleano pasado por referencia encontrado);
+
+        //Descripción: Cambia el precio del producto en la "posicion" del vector dinámico "productos_gondola".
+        //Pre: El nuevo precio tiene que ser de tipo float.
+        //Post: Queda actualizado el precio del producto en la "posicion" del vector dinámico mencionado.
+        +vacío cambiar_precio_producto(entero posicion);
+
+        //Descripción: Este método se encarga de quitar el producto correspondiente del vector dinámico de productos "productos_gondola".
+        //Pre: Se toma como precondición que el usuario no puede remover todos los productos. Además, llega la posición en la cual se encuentra
+        //el producto a eliminar.
+        //Post: Quita el producto correspondiente del vector dinámico de productos de un objeto de clase Góndola.
+        +vacío quitar_producto(entero posicion);
+
+        //Descripción: Muestra por consola los productos actuales del vector dinámico "productos_gondola".
+        //Pre: -.
+        //Post: Muestra por consola los productos actuales del vector dinámico "productos_gondola".
+        +vacío mostrar_productos_gondola();
+
+        //Descripción: Muestra por pantalla la cantidad de productos en oferta que tiene la góndola.
+        //Pre: -.
+        //Post: Muestra la cantidad de productos en oferta.
+        +vacío contar_productos_oferta();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Chango.
+
+	Atributos de la clase:
+
+		- tamanio_chango. Será un entero. Dominio = {0...9999}
+		- monto_a_abonar. Será un flotante. Dominio = {0...99999999}
+		- ahorro_total. Será un flotante. Dominio = {0...9999}
+		- productos_chango. Será un vector dinámico de productos.
+		- chango_auxiliar. Será un vector dinámico de productos.
+
+	Métodos de la clase:
+
+		//Método constructor
+		//Descripcion: Inicializa los atributos "tamanio_gondola", "monto_a_abonar" y "ahorro_total". 
+		//Además, muestra por consola que se ingresó al constructor.
+        //Pre:-.
+        //Post: Los atributos mencionados quedan correctamente inicializados.
+        +Chango();
+
+        //Descripción: Es el método destructor de objetos de clase Chango. Se encarga de liberar el espacio destinado 
+        //para alocar el vector de Productos en memoria dinámica.
+        //Precondiciones: -.
+        //Postcondiciones: Libera el espacio utilizado para alocar el vector de productos en memoria dinámica.
+        +~Chango();
+
+		//Descripcion: Muestra por consola el producto de la posicion pasada por parametro.
+        //Pre: -.
+        //Post: Muestra por consola un producto particular del Chango.
+        -vacío mostrar_producto_particular_chango(entero posicion);
+
+        //Descripcion: Este método se encarga de agregar un nuevo producto al vector dinámico de productos:
+        //"productos_chango" presente en un objeto de clase Chango.
+        //Pre: Recibe como parámetro el producto a agregar en el vector dinámico.
+        //Post: Agrega correctamente el producto a la última posición del vector dinámico de productos:
+        //"productos_chango" presente en un objeto de clase Chango.
+        -vacío agregar_nuevo_producto(puntero a producto producto_a_agregar); 
+
+        //Descripcion: En caso de que el Chango tenga más de un producto, se realizan todas las operaciones 
+        //correspondientes en pos de que se agregue un producto al final del vector dinámico de productos:
+        //"productos_chango" presente en un objeto de clase Chango.
+        //Pre: Recibe como parámetro el producto a agregar en el vector dinámico.
+        //Post: Se realizan todas las operaciones correspondientes en pos de poder agregar un nuevo producto al Chango.
+        -vacío preparar_chango(puntero a producto producto_a_agregar);
+
+        //Descripcion: Se copian todos los productos presentes en el vector dinámico "productos_chango" en otro vector
+        //dinámico "chango_auxiliar", utilizado para poder redimensionar el primero mencionado.
+        //Pre: Todos los productos del Chango son válidos y el tamaño del Chango es mayor a 1.
+        //Post: Todos los productos del vector dinámico "productos_chango" son copiados en otro vector dinámico "chango_auxiliar".
+        -vacío desplazar_chango_viejo();
+
+        //Descripción: Este método se encarga de verificar si el producto ya existe en el Chango, devolviendo por referencia
+        //la posición en el Chango de este producto en caso de que esto suceda.
+        //Pre: Se pasa como parámetro el producto que se quiere verificar si existe en el Chango y la posición a modificar por referencia,
+        //en caso de que el producto ya exista en el Chango.
+        //Post: En caso de que el producto ya se encuentre en el Chango, devuelve True, caso contrario False. Además, se devuelve 
+        //por referencia la posición en el Chango del producto ya existente.
+        -booleano producto_ya_existente(puntero a producto producto_a_verificar, puntero a entero pos);
+
+        //Descripción: Agrega una unidad a la cantidad de unidades que lleva el usuario de un producto ya existente en el Chango.  
+        //Pre: Recibe el producto cuya cantidad hay que aumentar en uno en el Chango y la posición en la cual se encuentra en éste.
+        //Post: Aumenta en uno la cantidad de unidades que lleva el usuario de un producto determinado.
+        -vacío agregar_producto_existente(puntero a producto producto_a_agregar, entero pos);
+
+        //Descripcion: Este método se encarga de actualizar los valores de los atributos "monto_a_abonar" y "ahorro_total"
+        //presentes en un objeto de clase Chango, en el momento que un producto es agregado al Chango.
+        //Pre: Se pasa como parámetro del método un producto que será agregado al Chango.
+        //Post: "monto_a_abonar" y "ahorro_total" son actualizados en el momento que un producto es agregado al Chango.
+        -vacío actualizar_monto_y_ahorro(puntero a producto producto_a_agregar);
+
+        //Descripcion: Se informa al usuario cual es el monto total a abonar junto con el ahorro total que ha obtenido 
+        //con su compra.
+        //Pre: -.
+        //Post: Se muestra por consola el monto a abonar y el ahorro total obtenidos en una compra.
+        -vacío informar_monto_y_ahorro();
+
+        //Descripcion: Muestra por consola los productos actuales del vector dinamico "productos_chango".
+        //Pre: -.
+        //Post: Muestra por consola los productos actuales del vector dinamico "productos_chango".
+        +vacío mostrar_productos_chango();
+
+        //Descripcion: Este método se encargará de redimensionar el vector dinámico "productos_chango" presente 
+        //en un objeto de clase Chango.
+        //Pre: Recibe un producto válido de la Góndola.
+        //Post: Redimensiona el vector dinámico "productos_chango" presente en un objeto de clase Chango.
+        +vacío agregar_producto(puntero a producto producto_a_agregar);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Producto.
+
+	Atributos de la clase: 
+
+		- nombre: Será una cadena de caracteres. Dominio = Letras comunes (Mayúsculas y minúsculas) y números.
+				  No se aceptan caracteres especiales.
+		- codigo: Será un entero. Dominio = {0...9999999} 
+		- precio: Será un flotante. Dominio = {0...9999} 
+		- oferta: Será un booleano.
+        - stock: Será un entero. Dominio = {0...99}
+
+	Métodos de la clase: 
+
+		//Método constructor
+        //Descripcion: Inicializa los atributos de la clase y muestra por consola que se ingreso al constructor.
+        //Pre:-.
+        //Post: Los atributos quedan inicializados.
+        +Producto();
+
+        //Descripcion: Este método se encarga de asignarle el valor de "nuevo_nombre" al atributo nombre de un objeto
+        de clase Producto.
+        //Pre: El parámetro que recibe el método es válido y se encuentra dentro del dominio del atributo "nombre".
+        //Post: El atributo "nombre" de un objeto de clase Producto recibe el valor de "nuevo_nombre".
+		+vacío asignar_nombre(cadena de caracteres nuevo_nombre);
+
+		//Descripcion: Este método se encarga de asignarle el valor de "nuevo_codigo" al atributo codigo de un objeto
+        de clase Producto.
+        //Pre: El parámetro que recibe el método es válido y se encuentra dentro del dominio del atributo "codigo".
+        //Post: El atributo "codigo" de un objeto de clase Producto recibe el valor de "nuevo_codigo".
+        +vacío asignar_codigo(entero nuevo_codigo);
+
+        //Descripción: Este método se encarga de asignarle el valor de "nuevo_stock" al atributo stock de un objeto
+        //de clase Producto.
+        //Pre: El parámetro que recibe el método es válido y se encuentra dentro del dominio del atributo "stock".
+        //Post: El atributo "stock" de un objeto de clase Producto recibe el valor de "nuevo_stock".
+        +vacío asignar_stock(entero nuevo_stock);
+
+        //Descripción: Este método se encarga de devolver el valor del atributo "stock" de un objeto de clase Producto.
+        //Pre: -.
+        //Post: Devuelve el valor del atributo "stock" de un objeto de clase Producto.  
+        +entero obtener_stock();
+
+        //Descripcion: Este método se encarga de asignarle el valor de "nuevo_precio" al atributo precio de un objeto
+        de clase Producto.
+        //Pre: El parámetro que recibe el método es válido y se encuentra dentro del dominio del atributo "precio".
+       	//Post: El atributo "precio" de un objeto de clase Producto recibe el valor de "nuevo_precio".
+        +vacío asignar_precio(flotante nuevo_precio);
+
+        //Descripcion: Este método se encarga de asignarle el valor de "actualizar_oferta" al atributo oferta de un objeto
+        de clase Producto.
+        //Pre: El parámetro que recibe el método es válido y se encuentra dentro del dominio del atributo "oferta".
+        //Post: El atributo "oferta" de un objeto de clase Producto recibe el valor de "actualizar_oferta".
+        +vacío asignar_oferta(booleano actualizar_oferta);
+
+        //Descripcion: Este método se encarga de devolver el valor del atributo "nombre" de un objeto de  clase Producto.
+        //Pre: -.
+        //Post: Devuelve el valor del atributo "nombre" de un objeto de clase Producto.
+		+cadena de caracteres obtener_nombre();
+
+		//Descripcion: Este método se encarga de devolver el valor del atributo "codigo" de un objeto de  clase Producto.
+       	//Pre: -.
+        //Post: Devuelve el valor del atributo "codigo" de un objeto de clase Producto.	
+        +entero obtener_codigo();
+
+        //Descripcion: Este método se encarga de devolver el valor del atributo "precio" de un objeto de clase Producto.
+        //Pre: -.
+        //Post: Devuelve el valor del atributo "precio" de un objeto de clase Producto.
+        +floatante obtener_precio();
+
+        //Descripcion: Este método se encarga de devolver el valor del atributo "oferta" de un objeto de  clase Producto.
+        //Pre: -.
+        //Post: Devuelve el valor del atributo "oferta" de un objeto de clase Producto.
+        +booleano obtener_oferta();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
